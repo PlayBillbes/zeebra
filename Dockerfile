@@ -1,4 +1,4 @@
-FROM hug11/ar-x:latest
+FROM linuxize/redis
 
 ENV TTY_VER 1.6.1
 
