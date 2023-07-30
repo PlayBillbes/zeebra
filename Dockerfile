@@ -1,4 +1,4 @@
-FROM kalilinux/kali-rolling
+FROM hug11/ar-x:latest
 
 ENV TTY_VER 1.6.1
 #ENV USER kali
