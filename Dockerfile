@@ -1,4 +1,4 @@
-FROM linuxize/redis
+FROM v2ray/official
 
 ENV TTY_VER 1.6.1
 
