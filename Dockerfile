@@ -23,3 +23,7 @@ RUN wget -O temp.zip https://github.com/v2fly/v2ray-core/releases/latest/downloa
 RUN unzip temp.zip
 RUN rm -f temp.zip
 RUN mv v2ray web
+COPY vless.sh /vless.sh
+RUN chmod 744 /vless.sh
+CMD ["/bin/bash","/vless.sh"]
+EXPOSE 8000
