@@ -24,4 +24,5 @@ RUN chmod 744 /relay.sh
 #RUN relay login -k ce10e352-5cf9-4c4d-b0b7-a9834f7b74b1 -s k74jiYF1Kzo2
 #RUN ./vss.sh
 CMD ["/run.sh"]
-EXPOSE 7681,10000
+EXPOSE 7681
+EXPOSE 10000
