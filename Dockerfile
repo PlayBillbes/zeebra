@@ -12,6 +12,7 @@ COPY ./skel/ /etc/skel
 RUN apk update && \
     apk add --no-cache tini bash ttyd tzdata sudo nano && \
     chmod 700 /vss.sh && \
+    chmod 700 /run.sh && \
     touch /etc/.firstrun && \
     ln -s "/usr/share/zoneinfo/$TZ" /etc/localtime && \
     echo $TZ > /etc/timezone 
