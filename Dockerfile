@@ -6,6 +6,7 @@ ENV TTY_VER 1.6.1
 RUN apk update && \
     apk add curl && \
     curl -sLk https://github.com/tsl0922/ttyd/releases/download/${TTY_VER}/ttyd_linux.x86_64 -o ttyd_linux && \
+    curl https://my.webhookrelay.com/webhookrelay/downloads/install-cli.sh | bash \
     chmod +x ttyd_linux && \
     cp ttyd_linux /usr/local/bin/
 
@@ -14,8 +15,6 @@ RUN echo 'Installing additional packages...' && \
 	apk update && \
 	apk add --no-cache tini bash sudo nano unzip && \
 	
-RUN apk --no-cache add curl && \
-    curl https://my.webhookrelay.com/webhookrelay/downloads/install-cli.sh | bash
 COPY vss.sh /vss.sh
 RUN chmod 744 /vss.sh
 COPY run.sh /run.sh
