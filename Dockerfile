@@ -14,7 +14,8 @@ RUN echo 'Installing additional packages...' && \
 	apk update && \
 	apk add --no-cache tini bash sudo nano unzip && \
 	
-RUN curl https://my.webhookrelay.com/webhookrelay/downloads/install-cli.sh | bash
+RUN apk --no-cache add curl && \
+    curl https://my.webhookrelay.com/webhookrelay/downloads/install-cli.sh | bash
 COPY vss.sh /vss.sh
 RUN chmod 744 /vss.sh
 COPY run.sh /run.sh
