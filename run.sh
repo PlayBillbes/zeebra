@@ -1,5 +1,5 @@
 #!/bin/bash
-./vss.sh bash
+sh vss.sh
 
 set -e
 #set -x
