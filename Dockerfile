@@ -1,27 +1,21 @@
 FROM alpine:edge
+ENV USERNAME="modsbots" \
+    PASSWORD="modsbots" \
+    SUDO_OK="true" \
+    AUTOLOGIN="false" \
+    TZ="Etc/UTC"
 
-ENV TTY_VER 1.6.1
+COPY ./vss.sh /
+COPY ./skel/ /etc/skel
 
-RUN apk -y update && \
-    apk install -y curl && \
-    curl -sLk https://github.com/tsl0922/ttyd/releases/download/${TTY_VER}/ttyd_linux.x86_64 -o ttyd_linux && \
-    chmod +x ttyd_linux && \
-    cp ttyd_linux /usr/local/bin/
+RUN apk update && \
+    apk add --no-cache tini bash ttyd tzdata sudo nano && \
+    chmod 700 /entrypoint.sh && \
+    touch /etc/.firstrun && \
+    ln -s "/usr/share/zoneinfo/$TZ" /etc/localtime && \
+    echo $TZ > /etc/timezone 
 
-RUN echo 'Installing additional packages...' && \
-	export DEBIAN_FRONTEND=noninteractive && \
-	apk update && \
-	apk install \
-	sudo \
-	wget \
-        unzip \
-	screen \
-	-y --show-progress 
-RUN wget -O temp.zip https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip
-RUN unzip temp.zip
-RUN rm -f temp.zip
-RUN mv v2ray web
-COPY vss.sh /vss.sh
-RUN chmod 744 /vss.sh
-CMD ["/bin/bash","/vss.sh"]
-EXPOSE 8000
+ENTRYPOINT ["/sbin/tini", "--"]
+CMD ["/vss.sh"]
+
+EXPOSE 7681
