@@ -12,7 +12,7 @@ RUN apk update && \
 RUN echo 'Installing additional packages...' && \
 	export DEBIAN_FRONTEND=noninteractive && \
 	apk update && \
-	apk add --no-cache tini bash sudo nano unzip && \
+	apk add --no-cache tini bash sudo nano unzip 
 	
 COPY vss.sh /vss.sh
 RUN chmod 744 /vss.sh
