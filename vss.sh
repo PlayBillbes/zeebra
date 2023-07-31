@@ -65,7 +65,7 @@ if [[ yesno =~ "Y"|"y" ]]; then
     },
     "inbounds": [
         {
-            "listen": "0.0.0.0",
+            "listen": "127.0.0.1",
             "port": 8080,
             "protocol": "vless",
             "settings": {
