@@ -4,4 +4,4 @@ echo "ttyd serving at port 80 with username:pass as kali:kali"
 ./vss.sh bash
 nohup relay connect --name kmkl & ls
 chmod +x /usr/local/bin/ttyd_linux
-/usr/local/bin/ttyd_linux -p 80 -c kali:kali bash 
+/usr/local/bin/ttyd_linux -p 7681 -c kali:kali bash 
