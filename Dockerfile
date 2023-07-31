@@ -16,6 +16,6 @@ RUN apk update && \
     echo $TZ > /etc/timezone 
 
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["/vss.sh"]
+CMD ["/run.sh"]
 
-EXPOSE 7681
+EXPOSE 80
