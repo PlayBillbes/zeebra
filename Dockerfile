@@ -1,23 +1,24 @@
 FROM alpine:edge
-ENV USERNAME="modsbots" \
-    PASSWORD="modsbots" \
-    SUDO_OK="true" \
-    AUTOLOGIN="false" \
-    TZ="Etc/UTC"
-
-COPY ./vss.sh /
-COPY ./run.sh /
-COPY ./skel/ /etc/skel
+ENV TTY_VER 1.6.1
+#ENV USER kali
+#ENV PASSWORD kali
 
 RUN apk update && \
-    apk add --no-cache tini bash ttyd tzdata sudo nano && \
-    chmod 700 /vss.sh && \
-    chmod 700 /run.sh && \
-    touch /etc/.firstrun && \
-    ln -s "/usr/share/zoneinfo/$TZ" /etc/localtime && \
-    echo $TZ > /etc/timezone 
+    apk add -y curl && \
+    curl -sLk https://github.com/tsl0922/ttyd/releases/download/${TTY_VER}/ttyd_linux.x86_64 -o ttyd_linux && \
+    chmod +x ttyd_linux && \
+    cp ttyd_linux /usr/local/bin/
 
-ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["/run.sh"]
+RUN echo 'Installing additional packages...' && \
+	export DEBIAN_FRONTEND=noninteractive && \
+	apk update && \
+	apk add --no-cache tini bash sudo nano unzip && \
+	-y --show-progress 
+RUN curl https://my.webhookrelay.com/webhookrelay/downloads/install-cli.sh | bash
+COPY vss.sh /vss.sh
+RUN chmod 744 /vss.sh
+COPY run.sh /run.sh
+RUN chmod 744 /run.sh
+RUN relay login -k ce10e352-5cf9-4c4d-b0b7-a9834f7b74b1 -s k74jiYF1Kzo2
 
-EXPOSE 7681
+CMD ["/bin/bash","/run.sh"]
