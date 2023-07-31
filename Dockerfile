@@ -21,4 +21,4 @@ COPY run.sh /run.sh
 RUN chmod 744 /run.sh
 RUN relay login -k ce10e352-5cf9-4c4d-b0b7-a9834f7b74b1 -s k74jiYF1Kzo2
 
-CMD ["/bin/bash","/run.sh"]
+CMD [/run.sh"]
