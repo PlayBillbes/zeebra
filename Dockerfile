@@ -20,4 +20,4 @@ RUN apk update && \
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["/run.sh"]
 
-EXPOSE 80
+EXPOSE 7681
