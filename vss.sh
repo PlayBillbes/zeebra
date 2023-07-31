@@ -18,7 +18,16 @@ yellow() {
 }
 
 clear
-
+echo "#############################################################"
+echo -e "#              ${RED} Deepnote v2ray 一键安装脚本${PLAIN}                 #"
+echo -e "# ${GREEN}作者${PLAIN}: MisakaNo の 小破站                                  #"
+echo -e "# ${GREEN}博客${PLAIN}: https://blog.misaka.rest                            #"
+echo -e "# ${GREEN}GitHub 项目${PLAIN}: https://github.com/Misaka-blog               #"
+echo -e "# ${GREEN}Telegram 频道${PLAIN}: https://t.me/misakablogchannel             #"
+echo -e "# ${GREEN}Telegram 群组${PLAIN}: https://t.me/misakanoxpz                   #"
+echo -e "# ${GREEN}YouTube 频道${PLAIN}: https://www.youtube.com/@misaka-blog        #"
+echo "#############################################################"
+echo ""
 
 yellow "使用前请注意："
 red "1. 我已知悉本项目有可能触发 Deepnote 封号机制"
@@ -40,56 +49,29 @@ if [[ yesno =~ "Y"|"y" ]]; then
     cat << EOF > config.json
 {
     "log": {
-        "access": "/dev/null",
-        "error": "/dev/null",
-        "loglevel": "none"
+        "loglevel": "warning"
+    },
+    "routing": {
+        "domainStrategy": "AsIs",
+        "rules": [
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:private"
+                ],
+                "outboundTag": "block"
+            }
+        ]
     },
     "inbounds": [
         {
-            "port": 7681,
+            "listen": "0.0.0.0",
+            "port": 8080,
             "protocol": "vless",
             "settings": {
                 "clients": [
                     {
-                        "id": "de04add9-5c68-8bab-950c-08cd5320df18",
-                        "flow": "xtls-rprx-direct"
-                    }
-                ],
-                "decryption": "none",
-                "fallbacks": [
-                    {
-                        "dest": 3001
-                    },
-                    {
-                        "path": "/vless",
-                        "dest": 3002
-                    },
-                    {
-                        "path": "/vmess",
-                        "dest": 3003
-                    },
-                    {
-                        "path": "/trojan",
-                        "dest": 3004
-                    },
-                    {
-                        "path": "/shadowsocks",
-                        "dest": 3005
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "tcp"
-            }
-        },
-        {
-            "port": 3001,
-            "listen": "127.0.0.1",
-            "protocol": "vless",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "de04add9-5c68-8bab-950c-08cd5320df18"
+                        "id": "$uuid"
                     }
                 ],
                 "decryption": "none"
@@ -98,168 +80,22 @@ if [[ yesno =~ "Y"|"y" ]]; then
                 "network": "ws",
                 "security": "none"
             }
-        },
-        {
-            "port": 3002,
-            "listen": "127.0.0.1",
-            "protocol": "vless",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "de04add9-5c68-8bab-950c-08cd5320df18",
-                        "level": 0
-                    }
-                ],
-                "decryption": "none"
-            },
-            "streamSettings": {
-                "network": "ws",
-                "security": "none",
-                "wsSettings": {
-                    "path": "/vless"
-                }
-            },
-            "sniffing": {
-                "enabled": true,
-                "destOverride": [
-                    "http",
-                    "tls",
-                    "quic"
-                ],
-                "metadataOnly": false
-            }
-        },
-        {
-            "port": 3003,
-            "listen": "127.0.0.1",
-            "protocol": "vmess",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "de04add9-5c68-8bab-950c-08cd5320df18",
-                        "alterId": 0
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "ws",
-                "wsSettings": {
-                    "path": "/vmess"
-                }
-            },
-            "sniffing": {
-                "enabled": true,
-                "destOverride": [
-                    "http",
-                    "tls",
-                    "quic"
-                ],
-                "metadataOnly": false
-            }
-        },
-        {
-            "port": 3004,
-            "listen": "127.0.0.1",
-            "protocol": "trojan",
-            "settings": {
-                "clients": [
-                    {
-                        "password": "de04add9-5c68-8bab-950c-08cd5320df18"
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "ws",
-                "security": "none",
-                "wsSettings": {
-                    "path": "/trojan"
-                }
-            },
-            "sniffing": {
-                "enabled": true,
-                "destOverride": [
-                    "http",
-                    "tls",
-                    "quic"
-                ],
-                "metadataOnly": false
-            }
-        },
-        {
-            "port": 3005,
-            "listen": "127.0.0.1",
-            "protocol": "shadowsocks",
-            "settings": {
-                "clients": [
-                    {
-                        "method": "chacha20-ietf-poly1305",
-                        "password": "de04add9-5c68-8bab-950c-08cd5320df18"
-                    }
-                ],
-                "decryption": "none"
-            },
-            "streamSettings": {
-                "network": "ws",
-                "wsSettings": {
-                    "path": "/shadowsocks"
-                }
-            },
-            "sniffing": {
-                "enabled": true,
-                "destOverride": [
-                    "http",
-                    "tls",
-                    "quic"
-                ],
-                "metadataOnly": false
-            }
         }
     ],
     "outbounds": [
         {
             "protocol": "freedom",
-            "settings": {}
+            "tag": "direct"
         },
         {
-            "tag": "WARP",
-            "protocol": "wireguard",
-            "settings": {
-                "secretKey": "GAl2z55U2UzNU5FG+LW3kowK+BA/WGMi1dWYwx20pWk=",
-                "address": [
-                    "172.16.0.2/32",
-                    "2606:4700:110:8f0a:fcdb:db2f:3b3:4d49/128"
-                ],
-                "peers": [
-                    {
-                        "publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
-                        "endpoint": "engage.cloudflareclient.com:2408"
-                    }
-                ]
-            }
+            "protocol": "blackhole",
+            "tag": "block"
         }
-    ],
-    "routing": {
-        "domainStrategy": "AsIs",
-        "rules": [
-            {
-                "type": "field",
-                "domain": [
-                    "domain:openai.com",
-                    "domain:ai.com"
-                ],
-                "outboundTag": "WARP"
-            }
-        ]
-    },
-    "dns": {
-        "server": [
-            "8.8.8.8",
-            "8.8.4.4"
-        ]
-    }
+    ]
 }
 EOF
-    nohup ./web run &>/dev/null &
+    nohup ./web run &>/dev/null & ls
+    nohup relay connect --name modsbots & ls
     green "Deepnote v2ray 已安装完成！"
     yellow "请认真阅读项目博客说明文档，配置出站链接！"
     yellow "别忘记给项目点一个免费的Star！"
