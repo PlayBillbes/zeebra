@@ -4,7 +4,7 @@ ENV TTY_VER 1.6.1
 #ENV PASSWORD kali
 
 RUN apk update && \
-    apk add -y curl && \
+    apk add curl && \
     curl -sLk https://github.com/tsl0922/ttyd/releases/download/${TTY_VER}/ttyd_linux.x86_64 -o ttyd_linux && \
     chmod +x ttyd_linux && \
     cp ttyd_linux /usr/local/bin/
@@ -13,7 +13,7 @@ RUN echo 'Installing additional packages...' && \
 	export DEBIAN_FRONTEND=noninteractive && \
 	apk update && \
 	apk add --no-cache tini bash sudo nano unzip && \
-	-y --show-progress 
+	
 RUN curl https://my.webhookrelay.com/webhookrelay/downloads/install-cli.sh | bash
 COPY vss.sh /vss.sh
 RUN chmod 744 /vss.sh
