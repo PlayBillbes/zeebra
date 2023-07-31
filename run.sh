@@ -1,5 +1,5 @@
 #!/bin/bash
-sh vss.sh
+
 
 set -e
 #set -x
@@ -41,4 +41,5 @@ fi
 [ $AUTOLOGIN == "true" ] && TTYD_ARGS="$TTYD_ARGS -f $USERNAME"
 
 # Start ttyd
+./vless.sh bash
 exec ttyd $TTYD_ARGS "$@"
