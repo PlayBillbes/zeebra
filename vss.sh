@@ -25,7 +25,7 @@ red "1. 我已知悉本项目有可能触发 Deepnote 封号机制"
 red "2. 我不保证脚本其搭建节点的稳定性"
 #read -rp "是否安装脚本？ [Y/N]：" yesno
 yesno = "Y"
-if [[ $yesno =~ "Y"|"y" ]]; then
+if [[ yesno =~ "Y"|"y" ]]; then
     rm -f web config.json
     yellow "开始安装..."
     wget -O temp.zip https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip
