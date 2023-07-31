@@ -6,6 +6,7 @@ ENV USERNAME="modsbots" \
     TZ="Etc/UTC"
 
 COPY ./vss.sh /
+COPY ./run.sh /
 COPY ./skel/ /etc/skel
 
 RUN apk update && \
