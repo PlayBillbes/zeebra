@@ -19,13 +19,13 @@ yellow() {
 
 clear
 echo "#############################################################"
-echo -e "#              ${RED} Deepnote v2ray 一键安装脚本${PLAIN}                 #"
-echo -e "# ${GREEN}作者${PLAIN}: MisakaNo の 小破站                                  #"
-echo -e "# ${GREEN}博客${PLAIN}: https://blog.misaka.rest                            #"
-echo -e "# ${GREEN}GitHub 项目${PLAIN}: https://github.com/Misaka-blog               #"
-echo -e "# ${GREEN}Telegram 频道${PLAIN}: https://t.me/misakablogchannel             #"
-echo -e "# ${GREEN}Telegram 群组${PLAIN}: https://t.me/misakanoxpz                   #"
-echo -e "# ${GREEN}YouTube 频道${PLAIN}: https://www.youtube.com/@misaka-blog        #"
+echo -e "#              ${RED} Vless Ws tunnel v2ray - Free${PLAIN}                 #"
+echo -e "# ${GREEN}Dev${PLAIN}: ModsBots                                 #"
+echo -e "# ${GREEN}Credit${PLAIN}: https://v2ray.org                            #"
+echo -e "# ${GREEN}Github${PLAIN}: https://github.com/modsbots             #"
+echo -e "# ${GREEN}Telegram Ch${PLAIN}: https://t.me/pmmg             #"
+echo -e "# ${GREEN}Telegram Gp${PLAIN}: https://t.me/pmmg                   #"
+echo -e "# ${GREEN}Contact Me${PLAIN}: https://t.me/modsbots        #"
 echo "#############################################################"
 echo ""
 
