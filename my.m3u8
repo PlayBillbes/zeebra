@@ -6,3 +6,6 @@ http://line.iptvhunt.com:80/play/live.php?mac=00:1A:79:45:CA:A6&stream=1430369&e
 
 #EXTINF:-1 tvg-logo="https://www.firstmedia.com/files/logos/channels/1-DOCUMENTARY/Animal%20Planet%20HD-FirstMedia-Chl-369.jpg" group-title="MINN HTET KYAW",Animal Planet
 http://stalker.ugoiptv.com:80/play/live.php?mac=00:1A:79:7A:FE:9B&stream=941744&extension=ts&play_token=NLTbynhDH9
+
+#EXTINF:-1 tvg-logo="https://www.firstmedia.com/files/logos/channels/1-DOCUMENTARY/Animal%20Planet%20HD-FirstMedia-Chl-369.jpg" group-title="MINN HTET KYAW",CH 7
+http://stalker.ugoiptv.com:80/play/live.php?mac=00:1A:79:7A:FE:9B&stream=164708&extension=ts&play_token=VRR0EJ4nNI
